@@ -1,3 +1,4 @@
+import asyncio
 import multiprocessing
 import os
 import pickle
@@ -39,6 +40,9 @@ def test_retriable_exception():
     assert is_retriable(e)
 
     e = ProxyError()
+    assert is_retriable(e)
+
+    e = asyncio.TimeoutError()
     assert is_retriable(e)
 
 
